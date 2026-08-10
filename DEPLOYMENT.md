@@ -10,17 +10,17 @@
 
 | Mục | Nội dung |
 |-----|----------|
-| Họ và tên | (điền họ tên) |
-| Mã học viên | (điền mã học viên) |
-| Repo | (điền link repo DAY12-...) |
+| Họ và tên | Nguyễn Tuấn Vũ |
+| Mã học viên | 2A202601845
+| Repo | https://github.com/vunt2/DAY12-2A202601845-NguyenTuanVu |
 
 ## Service
 
 | Mục | Nội dung |
 |-----|----------|
-| Public URL | https://TODO-thay-bang-url-that.up.railway.app |
-| Platform | Railway / Render / Cloud Run — (điền platform bạn dùng) |
-| Ngày deploy | (điền ngày) |
+| Public URL | https://day12-agent-production-9e8a.up.railway.app/ |
+| Platform | Railway |
+| Ngày deploy | 10/08/2026 |
 
 ## Biến Môi Trường Đã Set Trên Cloud
 
@@ -28,12 +28,12 @@ Ghi tên biến và **nguồn giá trị**, không ghi giá trị:
 
 | Biến | Đã set | Ghi chú |
 |------|--------|---------|
-| `PORT` | ✅ | platform tự gán |
-| `AGENT_API_KEY` | ✅ | đặt trong dashboard, không nằm trong repo |
-| `REDIS_URL` | ✅ | (điền: Redis add-on của platform / Upstash / ...) |
-| `RATE_LIMIT_PER_MINUTE` | ✅ | 10 |
-| `MONTHLY_BUDGET_USD` | ✅ | 10.0 |
-| `LOG_LEVEL` | ✅ | INFO |
+| `PORT` | ✅ | Railway tự gán |
+| `AGENT_API_KEY` | ✅ | đặt trong Railway dashboard, không nằm trong repo |
+| `REDIS_URL` | ✅ | Railway Redis service |
+| `RATE_LIMIT_PER_MINUTE` | ✅ | cấu hình trên Railway |
+| `MONTHLY_BUDGET_USD` | ✅ | cấu hình trên Railway |
+| `LOG_LEVEL` | ✅ | cấu hình trên Railway |
 
 ## Lệnh Kiểm Tra
 
@@ -70,11 +70,12 @@ done; echo
 
 ## Kết Quả Chạy Thật
 
-Dán output của các lệnh trên vào đây:
+Public deployment trên Railway đã kiểm tra:
 
-```
-(điền output)
-```
+- `/health`: HTTP 200, service hoạt động.
+- `/ready`: HTTP 200, Redis kết nối thành công.
+- `/ask` không có API key: từ chối truy cập theo cơ chế xác thực.
+- Agent và Redis đều đang Online trên Railway.
 
 ## Ảnh Chụp Màn Hình
 
@@ -83,19 +84,3 @@ Dán output của các lệnh trên vào đây:
 - `screenshots/dashboard.png` — trang quản lý service trên platform
 - `screenshots/health.png` — kết quả gọi `/health` từ trình duyệt hoặc curl
 
----
-
-## Nếu Dùng Phương Án Dự Phòng
-
-Không đăng ký được tài khoản cloud? Vẫn nộp được bài, nhưng CP5 tối đa 60% điểm:
-
-1. Đặt `LOCAL_FALLBACK=true` trong `.env`
-2. Chạy `docker compose up -d` rồi kiểm tra `docker compose ps`
-3. Chụp màn hình vào `screenshots/`
-4. Chạy `pytest tests/test_cp5.py -v` — bộ test sẽ tự chuyển sang kiểm tra
-   `http://localhost:8000`
-5. Ghi rõ lý do không deploy được vào phần dưới đây:
-
-```
-(điền lý do nếu dùng phương án dự phòng, ngược lại xóa mục này)
-```
